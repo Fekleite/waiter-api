@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
+import { router } from './router';
+
 const PORT = 3333;
 
 mongoose
@@ -9,6 +11,7 @@ mongoose
     console.log('✅ Connected to MongoDB');
 
     const app = express();
+    app.use(router);
 
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT}`);

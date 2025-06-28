@@ -1,13 +1,9 @@
 import { Router } from 'express';
+import { listCategories } from './app/use-cases/categories/list-categories';
 
 export const router = Router();
 
-router.get('/categories', (_, res) => {
-  res.status(200).json([
-    { id: '1', name: 'Beverages' },
-    { id: '2', name: 'Food' },
-  ]);
-});
+router.get('/categories', listCategories);
 
 router.post('/categories', (_, res) => {
   res.status(201).json({ id: '3', name: 'Desserts' });
