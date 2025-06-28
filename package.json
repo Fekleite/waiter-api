@@ -1,0 +1,17 @@
+{
+  "name": "waiter-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm exec tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@biomejs/biome": "2.0.6",
+    "typescript": "^5.8.3"
+  }
+}
