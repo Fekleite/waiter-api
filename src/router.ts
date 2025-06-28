@@ -1,13 +1,13 @@
 import { Router } from 'express';
+
+import { createCategory } from './app/use-cases/categories/create-category';
 import { listCategories } from './app/use-cases/categories/list-categories';
 
 export const router = Router();
 
 router.get('/categories', listCategories);
 
-router.post('/categories', (_, res) => {
-  res.status(201).json({ id: '3', name: 'Desserts' });
-});
+router.post('/categories', createCategory);
 
 router.get('/products', (_, res) => {
   res.status(200).json([
