@@ -1,0 +1,552 @@
+openapi: 3.0.0
+info:
+  title: WaiterApp
+  version: 1.0.0
+  description: ""
+servers:
+  - url: "{{host}}"
+  - url: http://localhost:3333
+    description: Local server
+paths:
+  /categories:
+    parameters: []
+    get:
+      summary: List Categories
+      parameters: []
+      responses:
+        "200":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Categories Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    icon:
+                      type: string
+                    __v:
+                      type: integer
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Categories Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      summary: Create Category
+      parameters: []
+      responses:
+        "201":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Category Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  icon:
+                    type: string
+                  _id:
+                    type: string
+                  __v:
+                    type: integer
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Category Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Category Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                icon:
+                  type: string
+  /products:
+    parameters: []
+    get:
+      summary: List Products
+      parameters: []
+      responses:
+        "200":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Products Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: integer
+                    category:
+                      type: string
+                    imagePath:
+                      type: string
+                    ingredients:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          icon:
+                            type: string
+                          _id:
+                            type: string
+                    __v:
+                      type: integer
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Products Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      summary: Create Product
+      parameters: []
+      responses:
+        "201":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Product Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: integer
+                  category:
+                    type: string
+                  imagePath:
+                    type: string
+                  ingredients:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        icon:
+                          type: string
+                        _id:
+                          type: string
+                  _id:
+                    type: string
+                  __v:
+                    type: integer
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Product Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Product Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /categories/{categoryId}/products:
+    parameters:
+      - name: categoryId
+        in: path
+        required: true
+        example: 68603fbc51c7dac6321f9ece
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 0
+    get:
+      summary: List Products By Category
+      parameters: []
+      responses:
+        "200":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Products By Category Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: integer
+                    category:
+                      type: string
+                    imagePath:
+                      type: string
+                    ingredients:
+                      type: array
+                      items: {}
+                    __v:
+                      type: integer
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Products By Category Server Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Products By Category Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /orders:
+    parameters: []
+    get:
+      summary: List Orders
+      parameters: []
+      responses:
+        "200":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Orders Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    table:
+                      type: string
+                      format: utc-millisec
+                    products:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          product:
+                            type: object
+                            properties:
+                              _id:
+                                type: string
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              price:
+                                type: integer
+                              category:
+                                type: string
+                              imagePath:
+                                type: string
+                              ingredients:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    icon:
+                                      type: string
+                                    _id:
+                                      type: string
+                              __v:
+                                type: integer
+                          quantity:
+                            type: integer
+                          _id:
+                            type: string
+                    status:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+                    __v:
+                      type: integer
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List Orders Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      summary: Create Order
+      parameters: []
+      responses:
+        "201":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Order Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  table:
+                    type: string
+                    format: utc-millisec
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product:
+                          type: string
+                        quantity:
+                          type: integer
+                        _id:
+                          type: string
+                  status:
+                    type: string
+                  _id:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  __v:
+                    type: integer
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Order Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Create Order Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table:
+                  type: string
+                  format: utc-millisec
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      product:
+                        type: string
+                      quantity:
+                        type: integer
+  /orders/{orderId}:
+    parameters:
+      - name: orderId
+        in: path
+        required: true
+        example: 6863259ccb81f268d32571e4
+        schema:
+          deprecated: false
+          type: string
+    patch:
+      summary: Update Order Status
+      parameters: []
+      responses:
+        "204":
+          headers: {}
+          description: Update Order Status Success
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Update Order Status Body Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Update Order Status Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+    delete:
+      summary: Cancel Order
+      parameters: []
+      responses:
+        "204":
+          headers: {}
+          description: Cancel Order Success
+        "400":
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Cancel Order Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
