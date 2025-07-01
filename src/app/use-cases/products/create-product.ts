@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+
 import { BadRequestError } from '../../errors/bad-request';
 import { Product } from '../../models/Product';
 
