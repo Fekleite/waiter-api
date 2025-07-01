@@ -1,0 +1,1404 @@
+{
+	"info": {
+		"_postman_id": "8ac9090a-1a16-42ab-bd63-65eb2026621d",
+		"name": "WaiterApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17067692"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							]
+						},
+						"description": "### Get Categories\n\nThis endpoint retrieves a list of categories from the server. It is useful for obtaining category data that can be utilized in various applications, such as displaying available categories to users or for filtering purposes.\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `{{host}}/categories`\n    \n- **Request Body**: No request body is required for this GET request.\n    \n\n#### Response\n\nThe response will be a JSON array containing category objects. Each category object has the following structure:\n\n- **_id**: (string) A unique identifier for the category.\n    \n- **name**: (string) The name of the category.\n    \n- **icon**: (string) A URL or path to an icon representing the category.\n    \n- **__v**: (integer) A version key for the category, typically used for versioning in databases.\n    \n\n##### Example Response\n\n``` json\n[\n    {\n        \"_id\": \"category_id_1\",\n        \"name\": \"Category Name 1\",\n        \"icon\": \"icon_url_1\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"category_id_2\",\n        \"name\": \"Category Name 2\",\n        \"icon\": \"icon_url_2\",\n        \"__v\": 0\n    }\n]\n\n ```\n\nThis response format allows clients to easily parse and utilize category data in their applications."
+					},
+					"response": [
+						{
+							"name": "List Categories Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "[\n    {\n        \"_id\": \"68603eef51c7dac6321f9ecb\",\n        \"name\": \"Pizza\",\n        \"icon\": \"🍕\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68603fbc51c7dac6321f9ece\",\n        \"name\": \"Bebidas\",\n        \"icon\": \"🍺\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68603fed51c7dac6321f9ed0\",\n        \"name\": \"Hamburguers\",\n        \"icon\": \"🍔\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6860403051c7dac6321f9ed2\",\n        \"name\": \"Promoções\",\n        \"icon\": \"🏷️\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "List Categories Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"error\": \"An error occurred while fetching categories.\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sobremesas\",\r\n    \"icon\": \"🍪\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/categories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories"
+							]
+						},
+						"description": "## Add Category\n\nThis endpoint allows you to create a new category in the system. You can specify the name and an icon for the category you wish to add.\n\n### Request\n\n**Method:** POST  \n**Endpoint:** `{{host}}/categories`\n\n#### Request Body\n\nThe request body must be in JSON format and should include the following parameters:\n\n- **name** (string): The name of the category you want to create.\n    \n- **icon** (string): An icon representing the category, which can be an emoji or a string representing an image.\n    \n\n**Example Request:**\n\n``` json\n{\n  \"name\": \"Sobremesas\",\n  \"icon\": \"🍪\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a JSON object containing the details of the newly created category. The structure of the response is as follows:\n\n- **name** (string): The name of the category.\n    \n- **icon** (string): The icon associated with the category.\n    \n- **_id** (string): A unique identifier for the category.\n    \n- **__v** (integer): The version key for the category.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"name\": \"\",\n  \"icon\": \"\",\n  \"_id\": \"\",\n  \"__v\": 0\n}\n\n ```\n\n### Notes\n\n- Ensure that the `name` and `icon` fields are provided in the request body.\n    \n- The response will include the created category's details, which can be used for further operations."
+					},
+					"response": [
+						{
+							"name": "Create Category Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Promoções\",\r\n    \"icon\": \"🏷️\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"name\": \"Sobremesas\",\n    \"icon\": \"🍪\",\n    \"_id\": \"68633658b65a7228b5e14596\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "Create Category Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while creating the category.\"\n}"
+						},
+						{
+							"name": "Create Category Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"Name and icon are required to create a category.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "List Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "## Get Products\n\nThis endpoint retrieves a list of products available in the system. It is useful for clients looking to display product information to users.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `{{host}}/products`\n    \n\n### Response\n\nThe response is a JSON array containing product objects. Each product object includes the following fields:\n\n- **_id**: A unique identifier for the product (string).\n    \n- **name**: The name of the product (string).\n    \n- **description**: A brief description of the product (string).\n    \n- **price**: The price of the product (number).\n    \n- **category**: The category to which the product belongs (string).\n    \n- **imagePath**: The URL of the product's image (string).\n    \n- **ingredients**: An array of ingredient objects associated with the product, where each ingredient object contains:\n    \n    - **name**: The name of the ingredient (string).\n        \n    - **icon**: An icon associated with the ingredient (string).\n        \n    - **_id**: A unique identifier for the ingredient (string).\n        \n- **__v**: A version key (number).\n    \n\n### Example Response\n\n``` json\n[\n    {\n        \"_id\": \"product_id_1\",\n        \"name\": \"Product Name\",\n        \"description\": \"Product Description\",\n        \"price\": 19.99,\n        \"category\": \"Category Name\",\n        \"imagePath\": \"http://example.com/image.jpg\",\n        \"ingredients\": [\n            {\n                \"name\": \"Ingredient Name\",\n                \"icon\": \"http://example.com/icon.jpg\",\n                \"_id\": \"ingredient_id_1\"\n            }\n        ],\n        \"__v\": 0\n    }\n]\n\n ```\n\nThis endpoint does not require a request body as it is a GET request."
+					},
+					"response": [
+						{
+							"name": "List Products Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "[\n    {\n        \"_id\": \"68605128fd01c27e35b60ab4\",\n        \"name\": \"Quatro Queijos\",\n        \"description\": \"Pizza de Quatro Queijos com borda tradicional\",\n        \"price\": 40,\n        \"category\": \"68603eef51c7dac6321f9ecb\",\n        \"imagePath\": \"1751142696089-quatro-queijos.png\",\n        \"ingredients\": [\n            {\n                \"name\": \"Prato\",\n                \"icon\": \"🧀\",\n                \"_id\": \"68605128fd01c27e35b60ab5\"\n            },\n            {\n                \"name\": \"Cheddar\",\n                \"icon\": \"🧀\",\n                \"_id\": \"68605128fd01c27e35b60ab6\"\n            },\n            {\n                \"name\": \"Mussarela\",\n                \"icon\": \"🧀\",\n                \"_id\": \"68605128fd01c27e35b60ab7\"\n            },\n            {\n                \"name\": \"Parmesão\",\n                \"icon\": \"🧀\",\n                \"_id\": \"68605128fd01c27e35b60ab8\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68631fe25ccd4c7f8e4cbc23\",\n        \"name\": \"Coca-cola\",\n        \"description\": \"Lata de coca-cola - 350ml\",\n        \"price\": 7,\n        \"category\": \"68603fbc51c7dac6321f9ece\",\n        \"imagePath\": \"1751326690078-coca-cola.png\",\n        \"ingredients\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68633862b65a7228b5e1459e\",\n        \"name\": \"Burguer Especial\",\n        \"description\": \"Hamburguer com molho especial\",\n        \"price\": 32,\n        \"category\": \"68603fed51c7dac6321f9ed0\",\n        \"imagePath\": \"1751332962247-burger-molho-especial.png\",\n        \"ingredients\": [\n            {\n                \"name\": \"Pao\",\n                \"icon\": \"🥖\",\n                \"_id\": \"68633862b65a7228b5e1459f\"\n            },\n            {\n                \"name\": \"Alface\",\n                \"icon\": \"🥬\",\n                \"_id\": \"68633862b65a7228b5e145a0\"\n            },\n            {\n                \"name\": \"Carne\",\n                \"icon\": \"🥩\",\n                \"_id\": \"68633862b65a7228b5e145a1\"\n            },\n            {\n                \"name\": \"Queijo\",\n                \"icon\": \"🧀\",\n                \"_id\": \"68633862b65a7228b5e145a2\"\n            },\n            {\n                \"name\": \"Tomate\",\n                \"icon\": \"🍅\",\n                \"_id\": \"68633862b65a7228b5e145a3\"\n            },\n            {\n                \"name\": \"Bacon\",\n                \"icon\": \"🥓\",\n                \"_id\": \"68633862b65a7228b5e145a4\"\n            },\n            {\n                \"name\": \"Molho\",\n                \"icon\": \"🥫\",\n                \"_id\": \"68633862b65a7228b5e145a5\"\n            }\n        ],\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "List Products Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"An error occurred while fetching products.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Products By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/categories/:categoryId/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"categories",
+								":categoryId",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "68603fbc51c7dac6321f9ece"
+								}
+							]
+						},
+						"description": "### Get Products by Category\n\nThis endpoint retrieves a list of products associated with a specific category identified by `categoryId`.\n\n#### Request\n\n- **Method**: GET\n    \n- **Endpoint**: `{{host}}/categories/:categoryId/products`\n    \n- **Path Parameter**:\n    \n    - `categoryId` (string): The unique identifier of the category for which products are being requested.\n        \n\n#### Response\n\nOn a successful request, the response will be a JSON array containing product objects. Each product object has the following structure:\n\n- `_id` (string): The unique identifier of the product.\n    \n- `name` (string): The name of the product.\n    \n- `description` (string): A brief description of the product.\n    \n- `price` (number): The price of the product.\n    \n- `category` (string): The category to which the product belongs.\n    \n- `imagePath` (string): The URL path to the product's image.\n    \n- `ingredients` (array): An array of ingredients associated with the product.\n    \n- `__v` (number): The version key for the product document.\n    \n\n#### Example Response\n\n``` json\n[\n  {\n    \"_id\": \"12345\",\n    \"name\": \"Product Name\",\n    \"description\": \"This is a product description.\",\n    \"price\": 19.99,\n    \"category\": \"Category Name\",\n    \"imagePath\": \"/images/product.jpg\",\n    \"ingredients\": [\"ingredient1\", \"ingredient2\"],\n    \"__v\": 0\n  }\n]\n\n ```\n\nThis endpoint is useful for applications that need to display products filtered by category, enhancing user experience by allowing users to browse products relevant to their interests."
+					},
+					"response": [
+						{
+							"name": "List Products By Category Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/categories/:categoryId/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories",
+										":categoryId",
+										"products"
+									],
+									"variable": [
+										{
+											"key": "categoryId",
+											"value": "68603fbc51c7dac6321f9ece"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "[\n    {\n        \"_id\": \"68631fe25ccd4c7f8e4cbc23\",\n        \"name\": \"Coca-cola\",\n        \"description\": \"Lata de coca-cola - 350ml\",\n        \"price\": 7,\n        \"category\": \"68603fbc51c7dac6321f9ece\",\n        \"imagePath\": \"1751326690078-coca-cola.png\",\n        \"ingredients\": [],\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "List Products By Category Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/categories/:categoryId/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories",
+										":categoryId",
+										"products"
+									],
+									"variable": [
+										{
+											"key": "categoryId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while fetching products.\"\n}"
+						},
+						{
+							"name": "List Products By Category Server Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/categories/:categoryId/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"categories",
+										":categoryId",
+										"products"
+									],
+									"variable": [
+										{
+											"key": "categoryId",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"The parameter \\\"categoryId\\\" is invalid.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "description",
+									"value": "Hamburguer com molho especial",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Fernanda Leite/Downloads/o-poder-do-js-recursos-main/o-poder-do-js-recursos-main/aula-1/burger-molho-especial.png"
+								},
+								{
+									"key": "ingredients",
+									"value": "[{\"name\":\"Pao\",\"icon\":\"🥖\"},{\"name\":\"Alface\",\"icon\":\"🥬\"},{\"name\":\"Carne\",\"icon\":\"🥩\"},{\"name\":\"Queijo\",\"icon\":\"🧀\"},{\"name\":\"Tomate\",\"icon\":\"🍅\"},{\"name\":\"Bacon\",\"icon\":\"🥓\"},{\"name\":\"Molho\",\"icon\":\"🥫\"}]",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Burguer Especial",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "32",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "68603fed51c7dac6321f9ed0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "## Add Product\n\nThis endpoint allows you to add a new product to the system. You can provide various details about the product, including its name, description, price, category, ingredients, and an associated image.\n\n### Request\n\n**Method:** POST  \n**Endpoint:** `{{host}}/products`\n\n#### Request Body\n\nThe request body must be sent as `form-data` and should include the following parameters:\n\n- **name** (text): The name of the product.\n    \n- **description** (text): A brief description of the product.\n    \n- **price** (text): The price of the product, represented as a string.\n    \n- **category** (text): The category under which the product falls.\n    \n- **ingredients** (text): A list of ingredients used in the product.\n    \n- **image** (file): An image file representing the product.\n    \n\n### Response\n\nUpon a successful request, the API will return a JSON object containing the details of the newly created product. The structure of the response is as follows:\n\n- **_id**: Unique identifier for the product.\n    \n- **name**: The name of the product.\n    \n- **description**: The description of the product.\n    \n- **price**: The price of the product.\n    \n- **category**: The category of the product.\n    \n- **imagePath**: The path to the uploaded image.\n    \n- **ingredients**: An array of ingredient objects, each containing:\n    \n    - **name**: The name of the ingredient.\n        \n    - **icon**: An icon associated with the ingredient.\n        \n    - **_id**: Unique identifier for the ingredient.\n        \n- **__v**: Version key for the product document.\n    \n\n### Example Response\n\n``` json\n{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"price\": 0,\n  \"category\": \"\",\n  \"imagePath\": \"\",\n  \"ingredients\": [\n    {\n      \"name\": \"\",\n      \"icon\": \"\",\n      \"_id\": \"\"\n    }\n  ],\n  \"_id\": \"\",\n  \"__v\": 0\n}\n\n ```\n\nEnsure that all required fields are provided in the request to successfully create a new product."
+					},
+					"response": [
+						{
+							"name": "Create Product Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "description",
+											"value": "Hamburguer com molho especial",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Fernanda Leite/Downloads/o-poder-do-js-recursos-main/o-poder-do-js-recursos-main/aula-1/burger-molho-especial.png"
+										},
+										{
+											"key": "ingredients",
+											"value": "[{\"name\":\"Pao\",\"icon\":\"🥖\"},{\"name\":\"Alface\",\"icon\":\"🥬\"},{\"name\":\"Carne\",\"icon\":\"🥩\"},{\"name\":\"Queijo\",\"icon\":\"🧀\"},{\"name\":\"Tomate\",\"icon\":\"🍅\"},{\"name\":\"Bacon\",\"icon\":\"🥓\"},{\"name\":\"Molho\",\"icon\":\"🥫\"}]",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Burguer Especial",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "68603fed51c7dac6321f9ed0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"name\": \"Burguer Especial\",\n    \"description\": \"Hamburguer com molho especial\",\n    \"price\": 32,\n    \"category\": \"68603fed51c7dac6321f9ed0\",\n    \"imagePath\": \"1751332962247-burger-molho-especial.png\",\n    \"ingredients\": [\n        {\n            \"name\": \"Pao\",\n            \"icon\": \"🥖\",\n            \"_id\": \"68633862b65a7228b5e1459f\"\n        },\n        {\n            \"name\": \"Alface\",\n            \"icon\": \"🥬\",\n            \"_id\": \"68633862b65a7228b5e145a0\"\n        },\n        {\n            \"name\": \"Carne\",\n            \"icon\": \"🥩\",\n            \"_id\": \"68633862b65a7228b5e145a1\"\n        },\n        {\n            \"name\": \"Queijo\",\n            \"icon\": \"🧀\",\n            \"_id\": \"68633862b65a7228b5e145a2\"\n        },\n        {\n            \"name\": \"Tomate\",\n            \"icon\": \"🍅\",\n            \"_id\": \"68633862b65a7228b5e145a3\"\n        },\n        {\n            \"name\": \"Bacon\",\n            \"icon\": \"🥓\",\n            \"_id\": \"68633862b65a7228b5e145a4\"\n        },\n        {\n            \"name\": \"Molho\",\n            \"icon\": \"🥫\",\n            \"_id\": \"68633862b65a7228b5e145a5\"\n        }\n    ],\n    \"_id\": \"68633862b65a7228b5e1459e\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "Create Product Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "description",
+											"value": "Hamburguer com molho especial",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Fernanda Leite/Downloads/o-poder-do-js-recursos-main/o-poder-do-js-recursos-main/aula-1/burger-molho-especial.png"
+										},
+										{
+											"key": "ingredients",
+											"value": "[{\"name\":\"Pao\",\"icon\":\"🥖\"},{\"name\":\"Alface\",\"icon\":\"🥬\"},{\"name\":\"Carne\",\"icon\":\"🥩\"},{\"name\":\"Queijo\",\"icon\":\"🧀\"},{\"name\":\"Tomate\",\"icon\":\"🍅\"},{\"name\":\"Bacon\",\"icon\":\"🥓\"},{\"name\":\"Molho\",\"icon\":\"🥫\"}]",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "68603fed51c7dac6321f9ed0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while creating the product.\"\n}"
+						},
+						{
+							"name": "Create Product Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "description",
+											"value": "Hamburguer com molho especial",
+											"type": "text"
+										},
+										{
+											"key": "ingredients",
+											"value": "[{\"name\":\"Pao\",\"icon\":\"🥖\"},{\"name\":\"Alface\",\"icon\":\"🥬\"},{\"name\":\"Carne\",\"icon\":\"🥩\"},{\"name\":\"Queijo\",\"icon\":\"🧀\"},{\"name\":\"Tomate\",\"icon\":\"🍅\"},{\"name\":\"Bacon\",\"icon\":\"🥓\"},{\"name\":\"Molho\",\"icon\":\"🥫\"}]",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Burguer Especial",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "68603fed51c7dac6321f9ed0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while uploading the image.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "List Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "### Get Orders\n\nThis endpoint retrieves a list of orders from the system. It allows users to access detailed information about each order, including the items ordered and their respective quantities.\n\n#### Request\n\n- **Method**: GET\n    \n- **Endpoint**: `{{host}}/orders`\n    \n\n#### Response Structure\n\nThe response will be a JSON array containing order objects. Each order object includes the following fields:\n\n- **_id**: (String) Unique identifier for the order.\n    \n- **table**: (String) The table number associated with the order.\n    \n- **products**: (Array) A list of products included in the order. Each product object contains:\n    \n    - **product**: (Object) Details of the product, including:\n        \n        - **_id**: (String) Unique identifier for the product.\n            \n        - **name**: (String) Name of the product.\n            \n        - **description**: (String) Description of the product.\n            \n        - **price**: (Number) Price of the product.\n            \n        - **category**: (String) Category to which the product belongs.\n            \n        - **imagePath**: (String) URL to the product image.\n            \n        - **ingredients**: (Array) List of ingredients for the product, where each ingredient object includes:\n            \n            - **name**: (String) Name of the ingredient.\n                \n            - **icon**: (String) Icon representing the ingredient.\n                \n            - **_id**: (String) Unique identifier for the ingredient.\n                \n    - **quantity**: (Number) Quantity of the product ordered.\n        \n    - **_id**: (String) Unique identifier for the product entry in the order.\n        \n- **status**: (String) Current status of the order.\n    \n- **createdAt**: (String) Timestamp indicating when the order was created.\n    \n- **__v**: (Number) Version key for the order document.\n    \n\n#### Example Response\n\n``` json\n[\n  {\n    \"_id\": \"order_id_1\",\n    \"table\": \"5\",\n    \"products\": [\n      {\n        \"product\": {\n          \"_id\": \"product_id_1\",\n          \"name\": \"Pizza\",\n          \"description\": \"Delicious cheese pizza\",\n          \"price\": 10.99,\n          \"category\": \"Food\",\n          \"imagePath\": \"/images/pizza.jpg\",\n          \"ingredients\": [\n            {\n              \"name\": \"Cheese\",\n              \"icon\": \"/icons/cheese.png\",\n              \"_id\": \"ingredient_id_1\"\n            }\n          ],\n          \"__v\": 0\n        },\n        \"quantity\": 2,\n        \"_id\": \"product_entry_id_1\"\n      }\n    ],\n    \"status\": \"completed\",\n    \"createdAt\": \"2023-10-01T12:00:00Z\",\n    \"__v\": 0\n  }\n]\n\n ```\n\nThis endpoint is essential for retrieving order details, allowing clients to track and manage their orders effectively."
+					},
+					"response": [
+						{
+							"name": "List Orders Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "[\n    {\n        \"_id\": \"68632577cb81f268d32571df\",\n        \"table\": \"1\",\n        \"products\": [\n            {\n                \"product\": {\n                    \"_id\": \"68605128fd01c27e35b60ab4\",\n                    \"name\": \"Quatro Queijos\",\n                    \"description\": \"Pizza de Quatro Queijos com borda tradicional\",\n                    \"price\": 40,\n                    \"category\": \"68603eef51c7dac6321f9ecb\",\n                    \"imagePath\": \"1751142696089-quatro-queijos.png\",\n                    \"ingredients\": [\n                        {\n                            \"name\": \"Prato\",\n                            \"icon\": \"🧀\",\n                            \"_id\": \"68605128fd01c27e35b60ab5\"\n                        },\n                        {\n                            \"name\": \"Cheddar\",\n                            \"icon\": \"🧀\",\n                            \"_id\": \"68605128fd01c27e35b60ab6\"\n                        },\n                        {\n                            \"name\": \"Mussarela\",\n                            \"icon\": \"🧀\",\n                            \"_id\": \"68605128fd01c27e35b60ab7\"\n                        },\n                        {\n                            \"name\": \"Parmesão\",\n                            \"icon\": \"🧀\",\n                            \"_id\": \"68605128fd01c27e35b60ab8\"\n                        }\n                    ],\n                    \"__v\": 0\n                },\n                \"quantity\": 2,\n                \"_id\": \"68632577cb81f268d32571e0\"\n            }\n        ],\n        \"status\": \"IN_PRODUCTION\",\n        \"createdAt\": \"2025-07-01T00:01:59.831Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "List Orders Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while fetching orders.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"table\": \"1\",\r\n    \"products\": [\r\n        {\r\n            \"product\": \"68633862b65a7228b5e1459e\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"product\": \"68631fe25ccd4c7f8e4cbc23\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "### Create Order\n\nThis endpoint allows you to create a new order in the system. By sending a POST request to `{{host}}/orders`, you can specify the details of the order, including the table number and the products being ordered.\n\n#### Request Body Format\n\nThe request body should be in JSON format and must include the following fields:\n\n- **table** (string): The table number associated with the order.\n    \n- **products** (array): An array of product objects, where each object contains:\n    \n    - **product** (string): The unique identifier of the product.\n        \n    - **quantity** (integer): The quantity of the product being ordered.\n        \n\n**Example Request Body:**\n\n``` json\n{\n  \"table\": \"1\",\n  \"products\": [\n    {\n      \"product\": \"68633862b65a7228b5e1459e\",\n      \"quantity\": 1\n    }\n  ]\n}\n\n ```\n\n#### Response Structure\n\nUpon a successful request, the response will return a JSON object with the following fields:\n\n- **table** (string): The table number for the order.\n    \n- **products** (array): An array of product objects reflecting the order details, where each object contains:\n    \n    - **product** (string): The unique identifier of the product.\n        \n    - **quantity** (integer): The quantity of the product ordered.\n        \n    - **_id** (string): The unique identifier for the product in the order.\n        \n- **status** (string): The status of the order.\n    \n- **_id** (string): The unique identifier for the order.\n    \n- **createdAt** (string): The timestamp when the order was created.\n    \n- **__v** (integer): The version key for the order document.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"table\": \"\",\n  \"products\": [\n    {\n      \"product\": \"\",\n      \"quantity\": 0,\n      \"_id\": \"\"\n    }\n  ],\n  \"status\": \"\",\n  \"_id\": \"\",\n  \"createdAt\": \"\",\n  \"__v\": 0\n}\n\n ```\n\nThis structure allows you to track the order details and confirm that the order has been successfully recorded in the system."
+					},
+					"response": [
+						{
+							"name": "Create Order Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"table\": \"1\",\r\n    \"products\": [\r\n        {\r\n            \"product\": \"68633862b65a7228b5e1459e\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"product\": \"68631fe25ccd4c7f8e4cbc23\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"table\": \"1\",\n    \"products\": [\n        {\n            \"product\": \"68633862b65a7228b5e1459e\",\n            \"quantity\": 1,\n            \"_id\": \"686338cab65a7228b5e145bb\"\n        },\n        {\n            \"product\": \"68631fe25ccd4c7f8e4cbc23\",\n            \"quantity\": 1,\n            \"_id\": \"686338cab65a7228b5e145bc\"\n        }\n    ],\n    \"status\": \"WAITING\",\n    \"_id\": \"686338cab65a7228b5e145ba\",\n    \"createdAt\": \"2025-07-01T01:24:26.774Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "Create Order Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while creating the order.\"\n}"
+						},
+						{
+							"name": "Create Order Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"table\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"Table and products are required to create a order.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"IN_PRODUCTION\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders/:orderId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "68632577cb81f268d32571df"
+								}
+							]
+						},
+						"description": "### Update Order Status\n\nThis endpoint allows you to update the status of an existing order identified by `orderId`. It is particularly useful for tracking the progress of an order through various stages of fulfillment.\n\n#### Request\n\n- **Method**: PATCH\n    \n- **URL**: `{{host}}/orders/:orderId`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following parameter:\n\n- **status** (string): The new status of the order. This parameter is required and should reflect the current state of the order. Example values may include statuses like \"IN_PRODUCTION\", \"SHIPPED\", \"DELIVERED\", etc.\n    \n\n#### Response\n\nUpon a successful request, the server will respond with a confirmation of the updated order status. The response will typically include:\n\n- **orderId** (string): The unique identifier of the order that was updated.\n    \n- **status** (string): The updated status of the order.\n    \n- **message** (string): A confirmation message indicating the status update was successful.\n    \n\nMake sure to handle any potential errors in your implementation, such as invalid `orderId` or invalid status values."
+					},
+					"response": [
+						{
+							"name": "Update Order Status Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"IN_PRODUCTION\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "68632577cb81f268d32571df"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						},
+						{
+							"name": "Update Order Status Server Error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "68632577cb81f268d32571df"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"An error occurred while updating the order status.\"\n}"
+						},
+						{
+							"name": "Update Order Status Body Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "68632577cb81f268d32571df"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"The \\\"status\\\" field is required to update the order status.\"\n}"
+						},
+						{
+							"name": "Update Order Status Wrong Status Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "68632577cb81f268d32571df"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"The \\\"status\\\" field must be one of the following: WAITING, IN_PRODUCTION, DONE.\"\n}"
+						},
+						{
+							"name": "Update Order Status Param Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"error\": \"The parameter \\\"orderId\\\" is invalid.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Cancel Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders/:orderId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "6863259ccb81f268d32571e4"
+								}
+							]
+						},
+						"description": "### Delete Order\n\nThis endpoint allows users to delete an existing order by specifying the unique identifier of the order.\n\n#### Request Parameters\n\n- **orderId** (path parameter): A string that represents the unique identifier of the order to be deleted. This parameter is required.\n    \n\n#### Expected Response\n\nUpon successful deletion of the order, the server will respond with a status code indicating the outcome of the operation. Typically, a successful deletion will return:\n\n- **204 No Content**: Indicates that the order has been successfully deleted and there is no additional content to return.\n    \n\n#### Notes\n\n- Ensure that the `orderId` provided corresponds to an existing order. If the order does not exist, the server may respond with a `404 Not Found` status code.\n    \n- Deleting an order is irreversible. Please confirm that you wish to delete the order before making this request."
+					},
+					"response": [
+						{
+							"name": "Cancel Order Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "6863259ccb81f268d32571e4"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						},
+						{
+							"name": "Cancel Order Bad Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "teste"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\r\n    \"error\": \"The parameter \\\"orderId\\\" is invalid.\"\r\n}"
+						},
+						{
+							"name": "Cancel Order Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/:orderId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\r\n    \"error\": \"An error occurred while canceling the order.\"\r\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
