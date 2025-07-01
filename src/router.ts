@@ -4,6 +4,10 @@ import multer from 'multer';
 
 import { createCategory } from './app/use-cases/categories/create-category';
 import { listCategories } from './app/use-cases/categories/list-categories';
+import { cancelOrder } from './app/use-cases/orders/cancel-order';
+import { createOrder } from './app/use-cases/orders/create-order';
+import { listOrders } from './app/use-cases/orders/list-orders';
+import { updateOrderStatus } from './app/use-cases/orders/update-order-status';
 import { createProduct } from './app/use-cases/products/create-product';
 import { listProducts } from './app/use-cases/products/list-products';
 import { listProductsByCategory } from './app/use-cases/products/list-products-by-category';
@@ -33,27 +37,10 @@ router.post('/products', upload.single('image'), createProduct);
 
 router.get('/categories/:categoryId/products', listProductsByCategory);
 
-router.get('/orders', (_, res) => {
-  res.status(200).json([
-    { id: '1', table: '1', products: [{ product: '1', quantity: 2 }] },
-    { id: '2', table: '2', products: [{ product: '2', quantity: 1 }] },
-  ]);
-});
+router.get('/orders', listOrders);
 
-router.post('/orders', (_, res) => {
-  res.status(201).json({
-    id: '1',
-    table: '1',
-    products: [{ product: '1', quantity: 2 }],
-  });
-});
+router.post('/orders', createOrder);
 
-router.patch('/orders/:orderId', (_, res) => {
-  res.status(200).json({
-    status: 'IN_PRODUCTION',
-  });
-});
+router.patch('/orders/:orderId', updateOrderStatus);
 
-router.delete('/orders/:orderId', (_, res) => {
-  res.status(204).send();
-});
+router.delete('/orders/:orderId', cancelOrder);
