@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx watch src/index.ts",
-    "build": "pnpm exec tsc"
+    "dev": "tsx watch src/index.ts",
+    "build": "pnpm exec tsc",
+    "start": "node dist"
   },
   "keywords": [],
   "author": "",
