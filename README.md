@@ -22,7 +22,7 @@ PORT=
 
 1. Utilize o comando `pnpm install` para instalar pacotes
 2. Utilize o comando `pnpm dev` para executar projeto local
-3. Utilize o comando `pnpm buils` para fazer o build do projeto
+3. Utilize o comando `pnpm build` para fazer o build do projeto
 
 ### Observações
 
